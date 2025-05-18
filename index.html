@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Biografia de Brandon Loch, un joven nacido en Patzicia Chimaltenango.">
+    <meta name="keywords" content="biografía, Guatemala, Historia, vida personal">
+    <meta name="author" content="Brandon Alexander Choy Loch">
+    <title>Mi Biografía - Brandon Alexander Choy Loch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #555;
+            --secondary-color: #999;
+            --text-color: #333;
+            --bg-color: #e5e5e5;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.2);
+            --dark-bg: #2c2c2c;
+            --dark-card: #3a3a3a;
+            --dark-text: #ccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        body.dark-mode .card, body.dark-mode header, body.dark-mode footer {
+            background: var(--dark-card);
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #333, #555);
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            padding: 80px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: var(--shadow);
+            animation: slideIn 1s ease;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            display: inline-block;
+            border-bottom: 3px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        header p.typing {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ccc;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: fadeIn 1s ease;
+        }
+
+        body.dark-mode nav {
+            background: rgba(50, 50, 50, 0.95);
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(360deg);
+            background: var(--secondary-color);
+        }
+
+        section.card {
+            background: var(--card-bg);
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        section.card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        section.card h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        section.card h2 i {
+            color: var(--secondary-color);
+            animation: bounce 2s infinite;
+        }
+
+        .media {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 250px; /* Ancho fijo para todas las imágenes */
+            height: 250px; /* Altura fija para todas las imágenes */
+            object-fit: cover; /* Recorta la imagen para llenar el contenedor sin distorsión */
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            filter: grayscale(100%);
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            filter: grayscale(50%);
+        }
+
+        .gallery-item p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-color, #333);
+            max-width: 250px; /* Alinea con el ancho de la imagen */
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            border-radius: 30px 30px 0 0;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: rotate(360deg);
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1.2rem; }
+            nav a { margin: 0 10px; padding: 8px 15px; }
+            section.card { padding: 20px; }
+            .gallery-item img {
+                width: 200px; /* Tamaño más pequeño para pantallas móviles */
+                height: 200px;
+            }
+            .gallery-item p {
+                max-width: 200px; /* Ajusta el ancho de la descripción */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <h1>Brandon Alexander Choy Loch</h1>
+        <p class="typing">Mi Vida personal e historia</p>
+    </header>
+
+    <button class="theme-toggle" title="Cambiar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <nav>
+        <a href="#historia-familiar">Historia Familiar</a>
+        <a href="#ninez">Niñez</a>
+        <a href="#adolescencia">Adolescencia</a>
+        <a href="#personal">Personal</a>
+        <a href="#academico">Académico</a>
+        <a href="#metas">Metas</a>
+        <a href="#pasatiempos">Pasatiempos</a>
+        <a href="#deportes">Deportes</a>
+        <a href="#gusta">Lo que me gusta</a>
+        <a href="#no-gusta">Lo que no me gusta</a>
+        <a href="#admiro">A quienes admiro</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#sitios">Sitios Recomendados</a>
+    </nav>
+
+    <section id="historia-familiar" class="card">
+        <h2><i class="fas fa-home"></i> Historia Familiar</h2>
+        <p>Hola, si alguien esta leyendo esto quiero empezar diciendo que este proyecto me parece divertido, sin más que añadir mi nombre es Brandon Alexander Choy Loch, Naci en Chimaltenango, Patzicia, Guatemala asi como mis papas y familia entera, mi familia es originiaria de Patzicia un pequeño pero generoso pueblo situado en un municipio de chimaltenango, mis abuelos; Rebeca y Pedro son padres de mi Mamá llamada Herminia, y mis abuelos Bejamin y Maria son Padres de mi Papá llamado Vicente, una curiosidad es que mis papas comparten un apellido ¨Choy¨ en fin, todos son originarios de Patzicia, tengo dos hermanos, una hermana llamada Yesenia y un hermano llamado Bryan, Actualmente vivimos en la Ciudad de Guatemala, yo tengo 20 años actualmente, estudio ingenieria en sistemas en la Universidad Mariano Galvez de Guatemala, me encuentro trabajando de repartidor y me siento estusiasmado por las cosas que estan por venir en mi vida.</p>
+    </section>
+
+    <section id="ninez" class="card">
+        <h2><i class="fas fa-child"></i> Niñez</h2>
+        <p>Mi infancia estuvo llena de aventuras en el barrio de mi antigua colonia, tuve amigos en todas las tapas de mi vida, desgracidamente muchos de mis amigos han perdido la vida por la delincuencia que  hay en esa colonia en la que vivia, recuerdo que yo estaba en un equipo de futbol, en donde competiamos con mis amigos por ganar un titulo, ellos me llegaban a recoger en mi casa, tambien jugabamos futbol en la calle de mi casa, jugabamos a los trompos, jugabamos canicas, jugabamos a las escondidas, juagabamos muchas otras cosas, conoci amigos muy queridos y ahora son recuerdos... extraño esos momentos ya que fueron dias que quedaron plasmados en mi cabeza, extraño a esos amigos...</p>
+    </section>
+
+    <section id="adolescencia" class="card">
+        <h2><i class="fas fa-user-graduate"></i> Adolescencia</h2>
+        <p>En mi adolescencia, me mudé con mi familia a Mixco, lo que marcó un cambio grande. En la secundaria, descubrí mi pasión por la tecnología y me uní al club de informática. Aunque enfrenté retos como equilibrar estudios y trabajo de medio tiempo en una tienda local, aprendí el valor de la perseverancia y la importancia de la amistad, que buenos tiempos fueron todos aquellos en basicos y diversificado, tuve mi primera novia que por cierto me rompio el corazon pero son cosas que volveria a repetir sin duda alguna.</p>
+    </section>
+
+    <section id="personal" class="card">
+        <h2><i class="fas fa-heart"></i> Personal</h2>
+        <p>Soy una persona curiosa, optimista y profundamente conectada con mi cultura guatemalteca. Valoro la honestidad, el respeto y la familia. Me considero alguien que siempre está aprendiendo, ya sea a través de libros, conversaciones o viajes. Mi mayor orgullo es llevar mis raíces mayas en el corazón y compartirlas con quienes me rodean, tengo muchas metas, primero Dios yo me comprare un  honda civic 2023 para el proximo año y tambien una mt07 de yamaha, estoy ansioso por cumplir lo que anhelo, soy un chico cristiano, asistia a la iglesia pero ahora por tiempo de trabajo y la U ya no he podido ir y siento que mi relacion con Dios es demasiado importante, mi vida personal depende de como yo este con Dios, el es mi centro, es el centro de todo lo que fui, soy y seré.</p>
+    </section>
+
+    <section id="academico" class="card">
+        <h2><i class="fas fa-book"></i> Académico</h2>
+        <p>Estudié en el Liceo Guatemala, donde destacé con otros amigos en mates. Actualmente, estoy en mi cuarto año de Ingeniería en Sistemas en la Universidad de La Mariano Galvez de Guetamala. Creo que me ha ido relativamente bien en el tema academico, no me considero ni tan bueno ni tan malo pero siempre trato de mejorar, en primaria fui reconocido como mejor 2do lugar de toda la primaria, en basicos un poco mas de lo mismo y en diversificado no destaque tanto y actualmente en la universidad trato de mejorar cada semestre ya que se que es parte fundamental de mi futuro, lastimosamente no pude conseguir ninguna beca en su momento, recibi becas pero para programas que me ayudaron en diferentes conocimientos.</p>
+    </section>
+
+    <section id="metas" class="card">
+        <h2><i class="fas fa-star"></i> Metas</h2>
+        <p>A corto plazo, quiero comprarme un carro, una moto de alta cilindrada, un honda civic 2023 y una yamaha mt07, a mediano plazo conseguir un trabajo en base a mi carrera, realmente tengo muchas planes y metas, muchas de esas metas estan completadas en un 50, es cuestion de tiempo para que se me de todo lo que he planeado, primero Dios un par de esas metas estan listas para el 2026.</p>
+    </section>
+
+    <section id="pasatiempos" class="card">
+        <h2><i class="fas fa-paint-brush"></i> Pasatiempos</h2>
+        <p>Me gusta ver series, actualmente estoy viendo una serie que veia de pequeño llamado yugiho y una llamada sangre de zeus, me gusta cocinar, me gusta escuchar musica, soy de muchos gustos realmente, cme gusta el futbol, me gusta jugar brawl stars, me gusta manejar moto, manejar carro, me gusta programar, me gustan las redes sociales, tengo una novia y tambien paso mi tiempo de calidad con ella.</p>
+    </section>
+
+    <section id="deportes" class="card">
+        <h2><i class="fas fa-futbol"></i> Deportes</h2>
+        <p>El fútbol es mi pasión. Juego como mediocampista en un equipo amateur de mi universidad y sigo con entusiasmo a la Selección Nacional de Guatemala. También practico caminatas en el parque erick barrondo. El deporte me ayuda a mantenerme enfocado y a construir lazos con mis compañeros y conmigo mismo.</p>
+    </section>
+
+    <section id="gusta" class="card">
+        <h2><i class="fas fa-thumbs-up"></i> Lo que me gusta</h2>
+        <ul>
+            <li>Comida: Tamales colorados y kak’ik, especialmente los de mi abuela.</li>
+            <li>Música: trap, regaetoon, jaz, me encanta escuchar musica.</li>
+            <li>Lugares: El mercado de Chichicastenango y el lago de Atitlán y las ferias que hacen en mi pueblo.</li>
+            <li>Actividades: Programar, jugar videojuegos, caminar bajo la lluvia, manejar en motocicleta.</li>
+        </ul>
+    </section>
+
+    <section id="no-gusta" class="card">
+        <h2><i class="fas fa-thumbs-down"></i> Lo que no me gusta</h2>
+        <ul>
+            <li>El tráfico caótico de la Ciudad de Guatemala en hora pico.</li>
+            <li>La comida demasiado picante, prefiero sabores suaves.</li>
+            <li>La impuntualidad, me gusta ser organizado.</li>
+            <li>Detesto el calor que hace en verano.</li>
+        </ul>
+    </section>
+
+    <section id="admiro" class="card">
+        <h2><i class="fas fa-trophy"></i> A quienes admiro</h2>
+        <p>Admiro a mi madre, Herminia, por su fortaleza y dedicación al criar a tres hijos mientras trabaja. También admiro a Rigoberta Menchú, por su lucha por los derechos indígenas y su impacto global. En el ámbito tecnológico, Elon Musk me inspira por su visión innovadora, aunque sueño con aplicar esa creatividad a proyectos que beneficien a Guatemala y admiro a cristiano ronaldo por luchar contra todo y todos y lograr tantas cosas en el mundo del futbol.</p>
+    </section>
+
+    <section id="fotos" class="card">
+        <h2><i class="fas fa-images"></i> Fotos</h2>
+        <div id="lightgallery" class="media">
+            <div class="gallery-item">
+                <a href="imagenesss/ponce2.JPG" data-sub-html="Esta foto la tomé el último día que estuve en básicos">
+                    <img src="imagenesss/ponce2.JPG" alt="Amigos en básicos">
+                </a>
+                <p>Esta foto la tomé el último día que estuve en básicos</p>
+            </div>
+            <div class="gallery-item">
+                <a href="imagenesss/ponce.JPG" data-sub-html="Esta foto la tomé un día de clases con mis mejores amigos">
+                    <img src="imagenesss/ponce.JPG" alt="Amigos en clase"> 
+                </a>
+                <p>Esta foto la tomé un día de clases con mis mejores amigos</p>
+            </div>
+            <div class="gallery-item">
+                <a href="imagenesss/iglesia.JPG" data-sub-html="Esta foto la tomé con mis amigos de la iglesia cuando tenía 13 años">
+                    <img src="imagenesss/iglesia.JPG" alt="Amigos de la iglesia"> 
+                </a>
+                <p>Esta foto la tomé con mis amigos de la iglesia cuando tenía 13 años</p>
+            </div>
+            <div class="gallery-item">
+                <a href="imagenesss/yo.JPG" data-sub-html="Esta foto la tomé el día que me gradué de diversificado, soy yo">
+                    <img src="imagenesss/yo.JPG" alt="Graduación de diversificado">
+                </a>
+                <p>Esta foto la tomé el día que me gradué de diversificado, soy yo</p>
+            </div>
+            <div class="gallery-item">
+                <a href="imagenesss/paisaje.JPG" data-sub-html="Esta foto la tomé cuando estaba de vacaciones con mis abuelos">
+                    <img src="imagenesss/paisaje.JPG" alt="Vacaciones con abuelos">
+                </a>
+                <p>Esta foto la tomé cuando estaba de vacaciones con mis abuelos</p>
+            </div>
+            <div class="gallery-item">
+                <a href="imagenesss/familia.JPG" data-sub-html="Esta foto la tomé cuando celebré mi cumpleaños con mi familia">
+                    <img src="imagenesss/familia.JPG" alt="Cumpleaños con familia">
+                </a>
+                <p>Esta foto la tomé cuando celebré mi cumpleaños con mi familia</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sitios" class="card">
+        <h2><i class="fas fa-link"></i> Sitios Recomendados</h2>
+        <ul>
+            <li><a href="https://www.instagram.com/alecsander.lc?igsh=MWlwcTYyNGlzMnd1Yw%3D%3D&utm_source=qr" target="_blank">Visita mi perfil de instagram</a> - Instagram</li>
+            <li><a href="https://www.facebook.com/share/19AK9hZEqb/?mibextid=wwXIfr" target="_blank">Visita mi perfil de facebook</a> - Facebook.</li>
+            <li><a href="https://www.umg.edu.gt/" target="_blank">Visita mi Universidad</a> - Mariano Galvez de Guatemala</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Brandon Alexander Choy Loch. Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ccc" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#999", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+            }
+        });
+
+        lightGallery(document.getElementById('lightgallery'), {
+            thumbnail: true,
+            animateThumb: false,
+            showThumbByDefault: false
+        });
+
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        });
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
